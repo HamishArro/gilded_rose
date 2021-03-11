@@ -6,11 +6,25 @@ describe GildedRose do
 
     describe '[normal]' do
 
+      it "the quality of an item is never negative" do
+        items = [Item.new(name="+5 Dexterity Vest", sell_in=5, quality=0)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 0
+        expect(items[0].sell_in).to eq 4
+      end
+
       it "changes the quality by -1" do
         items = [Item.new(name="+5 Dexterity Vest", sell_in=10, quality=20)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 19
         expect(items[0].sell_in).to eq 9
+      end
+
+      it "changes quality x2 as much when sell_in is < 0" do
+        items = [Item.new(name="+5 Dexterity Vest", sell_in=0, quality=20)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 18
+        expect(items[0].sell_in).to eq -1
       end
 
     end
@@ -22,6 +36,20 @@ describe GildedRose do
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 1
         expect(items[0].sell_in).to eq 1
+      end
+
+      it "changes the quality by +2 when sell_in date is reached" do
+        items = [Item.new(name="Aged Brie", sell_in=0, quality=0)]
+        26.times {GildedRose.new(items).update_quality()}
+        expect(items[0].quality).to eq 50
+        expect(items[0].sell_in).to eq -26
+      end
+
+      it "changes the quality by +2 till it reaches 50" do
+        items = [Item.new(name="Aged Brie", sell_in=0, quality=0)]
+        26.times {GildedRose.new(items).update_quality()}
+        expect(items[0].quality).to eq 50
+        expect(items[0].sell_in).to eq -26
       end
 
     end
