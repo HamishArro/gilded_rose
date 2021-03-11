@@ -2,7 +2,17 @@
 
 ## Planning
 
-*
+### Breakdown (sudo code)
+
+1. if sell_in < 0 -> degrade x 2
+2. if quality =< 0 -> quality is unchanged
+3. if item.name == 'Aged brie' -> + quality
+4. if quality => 50 -> quality is unchanged
+5. if item.name == 'sulfra' -> nothing changes
+6. if item.name == 'backstage' ->
+  - if sell_in =< 0 -> quality = 0
+  - if sell_in =< 5 -> quality += 3
+  - if sell_in =< 10 -> quality += 2
 
 
 
