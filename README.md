@@ -1,9 +1,28 @@
 # Gilded rose tech test
 
+* changes were only made to UpdateQuality, the goblin in the corner will not insta rage.
+
+## Installation
+
+1. download repo from Github
+2. cd into the repo `$ cd gilded_rose` - unless it has been renamed
+3. run bundle from the command line `$ bundle`
+4. run 'gilded_rose.rb' from the command line using IRB `$ irb -r ./lib/gilded_rose`
+
+## Use
+* make an array of items i.e:
+  `items = [Item.new(name="+5 Dexterity Vest", sell_in=10, quality=20),
+  Item.new(name="Aged Brie", sell_in=2, quality=0)]`
+* make a new object using the GildedRose class i.e:
+  `gilded_rose = GildedRose.new items`
+* then use `gilded_rose.update_quality` to update the quality of the items.
+* or alter the list of items found on 'texttest_fixture.rb' and run in the terminal using `$ ruby ./lib/texttest_fixture.rb`.
+  - you can alter the number of days you'd like by changing the number on line 18.
+
 ## Planning
-
+- use tests to refactor code, this will ensure it is not being broken.
 ### Breakdown (sudo code)
-
+- used to redesign logic
 1. if sell_in < 0 -> degrade x 2
 2. if quality =< 0 -> quality is unchanged
 3. if item.name == 'Aged brie' -> + quality
