@@ -109,6 +109,18 @@ describe GildedRose do
       end
 
     end
+
+    describe '[conjured]' do
+
+      it "[normal] quality reduces by 2" do
+        items = [Item.new(name="Conjured Mana Cake", sell_in=3, quality=6)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 4
+        expect(items[0].sell_in).to eq 2
+      end
+
+    end
+
   end
 
 end

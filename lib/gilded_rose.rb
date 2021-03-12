@@ -24,12 +24,13 @@ class GildedRose
             end
             quality_change *= -1
           end
-          if item.sell_in <= 0
+          if item.sell_in <= 0 || item.name.downcase.include?('conjured')
             quality_change *= 2
           end
           item.quality - quality_change > 50 ? item.quality = 50 : item.quality -= quality_change
         end
       end
+
       # if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
       #   if item.quality > 0
       #     if item.name != "Sulfuras, Hand of Ragnaros"
