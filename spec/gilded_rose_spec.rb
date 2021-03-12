@@ -84,6 +84,13 @@ describe GildedRose do
         expect(items[0].sell_in).to eq -1
       end
 
+      it "quality is capped at 50" do
+        items = [Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=50)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 50
+        expect(items[0].sell_in).to eq 9
+      end
+
     end
 
     describe '[Sulfuras]' do
